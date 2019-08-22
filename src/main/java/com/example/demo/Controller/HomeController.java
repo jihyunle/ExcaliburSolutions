@@ -74,8 +74,12 @@ public class HomeController {
                 orders = orderCombinedRepository.findAllByAmountEquals(Float.parseFloat(from_amount));
                 System.out.println(from_amount);
             } else if (amount_condition.equalsIgnoreCase("between")) {
-                orders = orderCombinedRepository.findAllByAmountBetween(Float.parseFloat(from_amount), Float.parseFloat(to_amount));
-                System.out.println(from_amount);
+                if(from_amount.isEmpty() || to_amount.isEmpty()){
+                    return "redirect:/";
+                }else{
+                    orders = orderCombinedRepository.findAllByAmountBetween(Float.parseFloat(from_amount), Float.parseFloat(to_amount));
+                    System.out.println(from_amount);
+                }
             }
         }
         //filter by description

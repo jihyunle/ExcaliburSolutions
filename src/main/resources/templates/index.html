@@ -19,14 +19,16 @@
 
         function showHideAmount(elem) {
             if(elem.selectedIndex != 0){
-                document.getElementById('to-date').style.display = 'none';
-                document.getElementById('to-date-label').style.display = 'none';
+                document.getElementById('to-amount').style.display = 'none';
+                document.getElementById('to-amount-label').style.display = 'none';
             }
+
             if(elem.selectedIndex == 0){
-                document.getElementById('to-date').style.display = 'inline';
-                document.getElementById('to-date-label').style.display = 'inline';
+                document.getElementById('to-amount').style.display = 'inline';
+                document.getElementById('to-amount-label').style.display = 'inline';
             }
         }
+
 
     </script>
 </head>
@@ -35,7 +37,7 @@
         <div class="col-3">
             <h3>Filter</h3>
             <div>
-                <form id="filter" th:action="@{/filter}" method="post">
+                <form id="filter" name="filter" th:action="@{/filter}" method="post">
                     <h5>Date</h5>
                     <select name="date-condition" onchange="showHideDate(this)">
                         <option value="between" >Between</option>
@@ -49,13 +51,14 @@
                     <br>
                     <h5>Amount</h5>
                     <select name="amount-condition" onchange="showHideAmount(this)">
-                        <option value="equal">equal</option>
+                        <option value="between">Between</option>
+                        <option value="equal">Equal</option>
                         <option value="greater-than-equal">Greater-than-equal</option>
                         <option value="less-than-equal">Less-than-equal</option>
                     </select>
                     <br>
                     <label for="from-amount">From: </label><input id="from-amount" name="from-amount" type="text">
-                    <label for="to-amount">To: </label><input id="to-amount" name="to-amount" type="text">
+                    <label for="to-amount" id="to-amount-label">To: </label><input id="to-amount" name="to-amount" type="text">
                     <br>
                     <h5>Description</h5>
                     <label for="description">Content: </label><input id="description" name="description" type="text">
